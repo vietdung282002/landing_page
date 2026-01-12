@@ -4,7 +4,7 @@ import HeaderAction from "./header-action";
 
 export default function Header() {
   return (
-    <div className="flex flex-row justify-around items-center w-full py-[26px] bg-bg-100">
+    <div className="flex flex-row justify-between items-center w-full py-[26px] px-[16px] md:px-[20px] lg:px-[40px] 2xl:px-[150px] bg-bg-100">
       <Image
         src={"/logo.png"}
         alt="logo"

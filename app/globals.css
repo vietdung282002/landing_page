@@ -9,6 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-playfair-display: var(--font-playfair-display);
+  --color-bg-primary: #fdfbf8;
   --color-bg-100: #c4c4c4;
   --color-primary-100: #70908b;
   --color-primary-200: #07484a;
@@ -17,6 +18,8 @@
   --color-secondary-300: #eeebff;
   --color-secondary-400: #fff4e7;
   --color-secondary-500: #fdfbf8;
+  --color-gray-100: #f0f0f0;
+  --color-gray-200: #6e757e;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -42,7 +42,7 @@ export default function Navbar() {
         ))}
       </nav>
       <button type="button" className="2xl:hidden cursor-pointer">
-        <Image src={"/icon_menu.png"} alt="menu" width={24} height={24} />
+        <Image src={"/icon_menu.svg"} alt="menu" width={24} height={24} />
       </button>
     </>
   );
