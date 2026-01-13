@@ -16,7 +16,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         placeholder={placeholder}
         onChange={(e) => {}}
       />
-      <MagnifyingGlassIcon className="absolute left-8 top-1/2 h-[20px] w-[20px] -translate-y-1/2 text-gray-200 peer-focus:text-gray-900" />
+      <MagnifyingGlassIcon className="absolute left-8 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-200 peer-focus:text-gray-900" />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { roboto } from "../../fonts";
 
 const categories = [
   { name: "Bedroom", href: "/categories/bedroom" },
@@ -20,11 +21,12 @@ const categories = [
   { name: "Decor", href: "/categories/decor" },
 ];
 
-export default function ScrollView() {
+export default function CategoryScrollView() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
-  const [scrollStart, setScrollStart] = useState(0);
+  const [scrollHeight, setScrollHeight] = useState(0);
+  const [clientHeight, setClientHeight] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollbarRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLDivElement>(null);
@@ -35,6 +37,8 @@ export default function ScrollView() {
     if (scrollContainerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } =
         scrollContainerRef.current;
+      setScrollHeight(scrollHeight);
+      setClientHeight(clientHeight);
       const maxScroll = scrollHeight - clientHeight;
       setScrollPosition(maxScroll > 0 ? scrollTop / maxScroll : 0);
     }
@@ -48,9 +52,15 @@ export default function ScrollView() {
     window.addEventListener("resize", updateScrollPosition);
     updateScrollPosition();
 
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+    };
+    container.addEventListener("wheel", handleWheel, { passive: false });
+
     return () => {
       container.removeEventListener("scroll", updateScrollPosition);
       window.removeEventListener("resize", updateScrollPosition);
+      container.removeEventListener("wheel", handleWheel);
     };
   }, [isDragging]);
 
@@ -60,12 +70,14 @@ export default function ScrollView() {
     setIsDragging(true);
     const trackRect = scrollbarRef.current.getBoundingClientRect();
     const trackHeight = 583;
-    const thumbHeight = Math.max(50, trackHeight / categories.length);
+    const thumbHeight =
+      scrollHeight <= clientHeight
+        ? trackHeight
+        : Math.max(50, trackHeight / categories.length);
     const currentThumbTop = scrollPosition * (trackHeight - thumbHeight);
 
     const mouseYInTrack = e.clientY - trackRect.top;
     setDragStart(mouseYInTrack - currentThumbTop);
-    setScrollStart(scrollPosition);
 
     e.preventDefault();
   };
@@ -84,6 +96,8 @@ export default function ScrollView() {
       const trackHeight = trackRect.height;
       const thumbHeight = thumbRef.current.offsetHeight;
       const maxThumbTop = trackHeight - thumbHeight;
+
+      if (maxThumbTop <= 0) return;
 
       let newThumbTop = e.clientY - trackRect.top - dragStart;
       newThumbTop = Math.max(0, Math.min(newThumbTop, maxThumbTop));
@@ -134,18 +148,26 @@ export default function ScrollView() {
   const emptyDivHeight = 104;
   const gap = 7;
   const trackHeight = containerHeight - emptyDivHeight - gap;
-  const thumbHeight = Math.max(50, trackHeight / categories.length);
+  const thumbHeight =
+    scrollHeight <= clientHeight
+      ? trackHeight
+      : Math.max(50, trackHeight / categories.length);
   const thumbTop = scrollPosition * (trackHeight - thumbHeight);
 
   return (
-    <div className="flex flex-row justify-between mt-[80px] w-full h-[694px] relative">
+    <div className="hidden 2xl:flex flex-row justify-between w-full relative">
       <div
         ref={scrollContainerRef}
-        className="flex flex-col gap-y-[83px] pl-[25px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        className={`${roboto.className} flex flex-col gap-y-[83px] pl-[25px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
         style={{ height: `${containerHeight}px` }}
       >
         {categories.map((category) => (
-          <div key={category.name}>{category.name}</div>
+          <div
+            key={category.name}
+            className="text-2xl leading-7 text-primary-200 "
+          >
+            {category.name}
+          </div>
         ))}
       </div>
 
@@ -168,7 +190,7 @@ export default function ScrollView() {
             />
           </div>
         </div>
-        <div className="h-[104px] flex flex-col justify-between">
+        <div className="h-26 flex flex-col justify-between">
           <button
             type="button"
             className="cursor-pointer"

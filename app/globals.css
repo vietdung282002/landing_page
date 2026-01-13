@@ -20,6 +20,7 @@
   --color-secondary-500: #fdfbf8;
   --color-gray-100: #f0f0f0;
   --color-gray-200: #6e757e;
+  --color-gray-300: #adadad;
 }
 
 @media (prefers-color-scheme: dark) {
