@@ -1,9 +1,9 @@
-import CategoryScrollView from "./scrollview";
 import Search from "./search";
 import Link from "next/link";
 import { openSans } from "../../fonts";
 import Image from "next/image";
 import CategoryGridView from "./category-grid-view";
+import CategoryScrollView from "./category-scrollview";
 import CategoryList from "./category-list";
 
 export default function Explore() {
