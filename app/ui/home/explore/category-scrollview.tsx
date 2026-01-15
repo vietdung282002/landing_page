@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { roboto } from "../../fonts";
-import CustomScrollbar from "./custom-scrollbar";
+import CustomScrollbar from "../../custom-scrollbar";
 
 const categories = [
   { name: "Bedroom", href: "/categories/bedroom" },
@@ -32,7 +32,7 @@ export default function CategoryScrollView() {
     <div className="hidden 2xl:flex flex-row justify-between w-full relative">
       <div
         ref={scrollContainerRef}
-        className={`${roboto.className} flex flex-col gap-y-[83px] pl-[25px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+        className={`${roboto.className} flex flex-col gap-y-[83px] ml-[25px] overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
         style={{ height: `${containerHeight}px` }}
       >
         {categories.map((category) => (
