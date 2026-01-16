@@ -106,13 +106,13 @@ export default function PopularScrollView() {
               />
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <div className="text-lg 2xl:text-2xl font-bold mt-10">
+              <div className="text-lg 2xl:text-2xl font-bold mt-10 text-primary-100">
                 {product.name}
               </div>
-              <div className="text-lg 2xl:text-lg font-normal mt-5">
+              <div className="text-lg 2xl:text-lg font-normal mt-5 text-primary-100">
                 {product.subtitle}
               </div>
-              <div className="text-2xl 2xl:text-2xl font-bold mt-4">
+              <div className="text-2xl 2xl:text-2xl font-bold mt-4 text-primary-100">
                 {product.price}
               </div>
             </div>
