@@ -2,6 +2,7 @@ import Image from "next/image";
 import { openSans } from "../../fonts";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import SpecialScrollView from "./special-scrollview";
 
 export default function SpecialPackage() {
   return (
@@ -58,7 +59,7 @@ export default function SpecialPackage() {
       </div>
       <div className="flex flex-col flex-1">
         <div className="text-2xl font-bold">Description</div>
-        <div className="text-lg mt-6">
+        <div className="text-lg mt-4">
           Cast Aluminum Outdoor Chaise Lounge As an elegant and classic touch to
           your outdoor space, this cast Aluminum Chaise Lounge combines the
           appearance, function and quality all together, offering you with the
@@ -106,6 +107,9 @@ export default function SpecialPackage() {
               />
             </div>
           </div>
+        </div>
+        <div className="mt-8">
+          <SpecialScrollView />
         </div>
       </div>
     </div>

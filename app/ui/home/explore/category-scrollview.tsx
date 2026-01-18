@@ -49,8 +49,6 @@ export default function CategoryScrollView() {
         containerRef={scrollContainerRef}
         trackHeight={trackHeight}
         itemCount={categories.length}
-        emptyDivHeight={emptyDivHeight}
-        gap={gap}
       />
     </div>
   );

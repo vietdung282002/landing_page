@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 type ScrollDirection = "vertical" | "horizontal";
@@ -9,18 +9,18 @@ interface CustomScrollbarProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
   trackHeight: number;
   itemCount: number;
-  emptyDivHeight?: number;
   gap?: number;
   direction?: ScrollDirection;
+  hideButtons?: boolean;
 }
 
 export default function CustomScrollbar({
   containerRef,
   trackHeight,
   itemCount,
-  emptyDivHeight = 104,
   gap = 7,
   direction = "vertical",
+  hideButtons = false,
 }: CustomScrollbarProps) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -34,7 +34,7 @@ export default function CustomScrollbar({
 
   const isVertical = direction === "vertical";
 
-  const updateScrollPosition = () => {
+  const updateScrollPosition = useCallback(() => {
     if (isDragging || !containerRef.current) return;
 
     const container = containerRef.current;
@@ -51,7 +51,7 @@ export default function CustomScrollbar({
 
     const maxScroll = scrollSizeValue - clientSizeValue;
     setScrollPosition(maxScroll > 0 ? scrollPos / maxScroll : 0);
-  };
+  }, [isDragging, isVertical, containerRef]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -84,7 +84,7 @@ export default function CustomScrollbar({
         window.removeEventListener("resize", updateTrackLength);
       }
     };
-  }, [isDragging, isVertical, trackHeight]);
+  }, [containerRef, isDragging, isVertical, trackHeight, updateScrollPosition]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollbarRef.current || !containerRef.current) return;
@@ -161,7 +161,7 @@ export default function CustomScrollbar({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, dragStart, scrollPosition]);
+  }, [isDragging, dragStart, scrollPosition, containerRef, isVertical]);
 
   const handleScrollBackward = () => {
     if (!containerRef.current) return;
@@ -200,9 +200,10 @@ export default function CustomScrollbar({
       ref={scrollbarContainerRef}
       className={
         isVertical
-          ? "flex flex-col items-center gap-y-[7px] h-full"
-          : "flex flex-col items-center gap-y-[20px] w-full justify-center items-end "
+          ? "flex flex-col items-center justify-start"
+          : "flex flex-col items-center w-full justify-center"
       }
+      style={{ gap: `${gap}px` }}
     >
       <div
         className={
@@ -213,8 +214,8 @@ export default function CustomScrollbar({
           ref={scrollbarRef}
           className={
             isVertical
-              ? "relative w-[1px] bg-primary-200"
-              : "relative h-[1px] bg-primary-200 w-full"
+              ? "relative w-px bg-primary-200"
+              : "relative h-px bg-primary-200 w-full"
           }
           style={
             isVertical
@@ -232,54 +233,56 @@ export default function CustomScrollbar({
             style={
               isVertical
                 ? {
-                    width: "5px",
-                    height: `${thumbSize}px`,
-                    top: `${thumbPos}px`,
-                  }
+                  width: "5px",
+                  height: `${thumbSize}px`,
+                  top: `${thumbPos}px`,
+                }
                 : {
-                    height: "12px",
-                    width: `${thumbSize}px`,
-                    left: `${thumbPos}px`,
-                  }
+                  height: "12px",
+                  width: `${thumbSize}px`,
+                  left: `${thumbPos}px`,
+                }
             }
             onMouseDown={handleMouseDown}
           />
         </div>
       </div>
-      <div
-        className={
-          isVertical
-            ? "h-26 flex flex-col justify-between"
-            : "w-26 hidden 2xl:flex flex-row justify-between"
-        }
-      >
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={handleScrollBackward}
+      {!hideButtons && (
+        <div
+          className={
+            isVertical
+              ? "h-26 flex flex-col justify-between"
+              : "w-26 hidden 2xl:flex flex-row justify-between"
+          }
         >
-          <Image
-            src={"/up_arrow.svg"}
-            alt={isVertical ? "up arrow" : "left arrow"}
-            width={40}
-            height={40}
-            className={isVertical ? "" : "rotate-270"}
-          />
-        </button>
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={handleScrollForward}
-        >
-          <Image
-            src={"/down_arrow.svg"}
-            alt={isVertical ? "down arrow" : "right arrow"}
-            width={40}
-            height={40}
-            className={isVertical ? "" : "rotate-270"}
-          />
-        </button>
-      </div>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleScrollBackward}
+          >
+            <Image
+              src={"/up_arrow.svg"}
+              alt={isVertical ? "up arrow" : "left arrow"}
+              width={40}
+              height={40}
+              className={isVertical ? "" : "rotate-270"}
+            />
+          </button>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleScrollForward}
+          >
+            <Image
+              src={"/down_arrow.svg"}
+              alt={isVertical ? "down arrow" : "right arrow"}
+              width={40}
+              height={40}
+              className={isVertical ? "" : "rotate-270"}
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
