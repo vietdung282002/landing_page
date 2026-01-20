@@ -1,6 +1,8 @@
 {
   "piny.project_settings": {
-    "open-pages": ["pinyfakepage.html"],
+    "open-pages": [
+      "pinyfakepage.html"
+    ],
     "urls": {
       "pinyfakepage.html": {
         "open-page-views": [
@@ -11,5 +13,8 @@
         ]
       }
     }
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }

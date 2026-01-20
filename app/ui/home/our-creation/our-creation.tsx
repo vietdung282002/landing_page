@@ -2,9 +2,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { playfairDisplay, openSans } from "../../fonts";
+import { playfairDisplay, openSans, roboto } from "../../fonts";
 
-const roomItems = Array.from({ length: 20 }, (_, i) => ({
+const roomItems = Array.from({ length: 10 }, (_, i) => ({
   id: i + 1,
   name: `Room ${i + 1}`,
   image: "/bedroom.jpg",
@@ -15,7 +15,8 @@ export default function OurCreation() {
   const totalItems = roomItems.length;
   const maxIndex = totalItems - 1;
 
-  const progress = maxIndex > 0 ? Math.min((currentIndex / maxIndex) * 100, 100) : 0;
+  const progress =
+    maxIndex > 0 ? Math.min((currentIndex / maxIndex) * 100, 100) : 0;
   const translateX = currentIndex * (360 + 24);
 
   const handlePrev = () => {
@@ -27,9 +28,9 @@ export default function OurCreation() {
   };
 
   return (
-    <section className="py-25 bg-bg-primary overflow-hidden">
+    <section className="py-20 sm:py-25 bg-bg-primary overflow-hidden">
       <div className="flex items-center gap-6">
-        <div className="shrink-0 w-[577px] h-[503px] bg-primary-100 rounded-r-[10px] pl-37 pr-25 flex flex-col justify-start">
+        <div className="hidden sm:flex shrink-0 w-[577px] h-[503px] bg-primary-100 rounded-r-[10px] pl-37 pr-25 flex-col justify-start">
           <div className="pt-32">
             <h2
               className={`${playfairDisplay.className} text-3xl md:text-4xl font-medium text-white leading-tight italic`}
@@ -38,9 +39,7 @@ export default function OurCreation() {
               <br />
               Own Creation
             </h2>
-            <p
-              className={`${openSans.className} text-white/80 text-sm mt-8`}
-            >
+            <p className={`${openSans.className} text-white/80 text-sm mt-8`}>
               Designed in our studio
             </p>
           </div>
@@ -89,7 +88,24 @@ export default function OurCreation() {
             </button>
           </div>
         </div>
+        <div className="flex sm:hidden shrink-0 w-[195] h-[311px] bg-primary-100 rounded-r-[10px] px-4 py-12.5 flex-col justify-start gap-y-8">
+          <h2
+            className={`${playfairDisplay.className} text-[28px] md:text-4xl font-medium text-white leading-tight italic`}
+          >
+            Our Own
+            <br />
+            Creation
+          </h2>
+          <p className={`${openSans.className} text-white/80 text-[18px]`}>
+            Designed in our studio
+          </p>
 
+          <span
+            className={`${roboto.className} text-white text-[18px] font-bold`}
+          >
+            More
+          </span>
+        </div>
         <div className="flex-1 overflow-hidden">
           <div
             className="flex items-center gap-6 h-[537px] transition-transform duration-500 ease-out"
@@ -102,10 +118,11 @@ export default function OurCreation() {
               return (
                 <div
                   key={room.id}
-                  className={`shrink-0 relative group transition-all duration-500 ease-out ${isActive
-                    ? "w-[382px] h-[537px] scale-100"
-                    : "w-[360px] h-[507px] scale-100"
-                    }`}
+                  className={`shrink-0 relative group transition-all duration-500 ease-out ${
+                    isActive
+                      ? "w-[288px] 2xl:w-[382px] h-[343px] 2xl:h-[537px] scale-100"
+                      : "w-[360px] h-[507px] scale-100"
+                  }`}
                 >
                   <div className="w-full h-full bg-gray-100 rounded-3xl overflow-hidden relative shadow-lg">
                     <Image
@@ -114,7 +131,7 @@ export default function OurCreation() {
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                    <div className="absolute bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
 
                   <div className="absolute bottom-14 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

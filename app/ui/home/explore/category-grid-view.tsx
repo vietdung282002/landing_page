@@ -39,7 +39,7 @@ export default function CategoryGridView() {
             fill
             className="object-cover transition-transform duration-300"
           />
-          <div className="absolute inset-0 bg-gray-300/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-6 2xl:gap-9">
+          <div className="absolute bg-gray-300/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-6 2xl:gap-9">
             <h3 className="text-[36px] md:text-[48px] 2xl:text-[64px] font-normal leading-21 text-white">
               {category.name}
             </h3>
@@ -49,7 +49,7 @@ export default function CategoryGridView() {
               Explore
             </button>
           </div>
-          <div className="block 2xl:hidden absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-300 flex flex-col items-center justify-center gap-6 2xl:gap-9">
+          <div className=" 2xl:hidden absolute opacity-100 group-hover:opacity-0 transition-opacity duration-300 flex flex-col items-center justify-center gap-6 2xl:gap-9">
             <h3 className="text-[36px] md:text-[48px] 2xl:text-[64px] font-normal leading-21 text-white">
               {category.name}
             </h3>

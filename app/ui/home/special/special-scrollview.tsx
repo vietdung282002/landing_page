@@ -1,73 +1,25 @@
 "use client";
 import { useRef } from "react";
-import { roboto } from "../../fonts";
+import { playfairDisplay, openSans } from "../../fonts";
 import CustomScrollbar from "../../custom-scrollbar";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-const specialPackage = [
-  {
-    name: "Living Room Special Set",
-    price: "$329.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Bedroom Collection Set",
-    price: "$429.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Dining Room Premium Set",
-    price: "$529.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Kitchen Modern Set",
-    price: "$379.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Office Workspace Set",
-    price: "$299.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Outdoor Patio Set",
-    price: "$599.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Master Bedroom Suite",
-    price: "$799.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Kids Room Fun Set",
-    price: "$249.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Luxury Living Set",
-    price: "$899.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-  {
-    name: "Minimalist Home Set",
-    price: "$349.99",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: "/bedroom.jpg",
-  },
-];
+interface SpecialPackageItem {
+  name: string;
+  price: string;
+  description: string;
+  image: string;
+}
 
-export default function SpecialScrollView() {
+interface SpecialScrollViewProps {
+  specialPackage: SpecialPackageItem[];
+}
+
+export default function SpecialScrollView({
+  specialPackage,
+}: SpecialScrollViewProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const containerHeight = 332;
   const emptyDivHeight = 104;
@@ -81,21 +33,49 @@ export default function SpecialScrollView() {
     >
       <div
         ref={scrollContainerRef}
-        className={`${roboto.className} flex flex-col gap-y-8 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+        className={`${openSans.className} flex flex-col gap-y-8 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
       >
-        {specialPackage.map((category) => (
+        {specialPackage.slice(2).map((packageItem) => (
           <div
-            key={category.name}
+            key={packageItem.name}
             className="flex flex-row text-2xl leading-7 text-primary-200 w-[625px] h-[149px] gap-4"
           >
             <Image
-              src={category.image}
-              alt={category.name}
+              src={packageItem.image}
+              alt={packageItem.name}
               width={248}
               height={149}
               className="rounded-[10px]"
             />
-            <div className="flex flex-col"></div>
+            <div className="flex flex-col gap-y-3 justify-center">
+              <div className="flex flex-row justify-between items-center h-[22px]">
+                <div className={`${playfairDisplay.className} text-base `}>
+                  {packageItem.name}
+                </div>
+                <div className="text-[22px] font-bold">{packageItem.price}</div>
+              </div>
+              <div className="flex flex-row gap-x-3">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Image
+                    key={index}
+                    src="/star_icon.svg"
+                    alt="star"
+                    width={17}
+                    height={17}
+                  />
+                ))}
+              </div>
+              <div className="text-[14px] font-normal line-clamp-1 text-ellipsis overflow-hidden">
+                {packageItem.description}
+              </div>
+              <Link
+                href=""
+                className={`${openSans.className} flex flex-row justify-start items-center gap-[8px] text-[14px] text-black font-semibold`}
+              >
+                <span>See More</span>
+                <ChevronDownIcon className="w-[14px] h-[7px]" />
+              </Link>
+            </div>
           </div>
         ))}
       </div>

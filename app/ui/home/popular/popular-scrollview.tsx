@@ -119,7 +119,7 @@ export default function PopularScrollView() {
           </div>
         ))}
       </div>
-      <div className="px-4 sm:px-5 lg:px-10 2xl:px-37 mt-7 sm:">
+      <div className="px-4 sm:px-5 lg:px-10 2xl:px-37 mt-7 sm:mt-13">
         <CustomScrollbar
           containerRef={scrollContainerRef}
           trackHeight={200}

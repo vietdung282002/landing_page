@@ -201,7 +201,7 @@ export default function CustomScrollbar({
       className={
         isVertical
           ? "flex flex-col items-center justify-start"
-          : "flex flex-col items-center w-full justify-center"
+          : "flex flex-col items-end w-full justify-center"
       }
       style={{ gap: `${gap}px` }}
     >

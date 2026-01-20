@@ -26,16 +26,18 @@ export default function Benefits() {
   return (
     <div className={`${openSans.className} py-25 bg-secondary-200`}>
       <div className="flex flex-col items-center">
-        <h2
-          className={`${playfairDisplay.className} text-4xl sm:text-5xl font-bold text-primary-200 mb-12`}
+        <p
+          className={`${playfairDisplay.className} text-4xl sm:text-5xl font-bold text-primary-200 mb-12 px-4 text-center `}
         >
-          Benefits for your expediency
-        </h2>
-        <div className="flex flex-row flex-wrap justify-between gap-8 mt-26 w-full px-71">
+          Benefits
+          <br className="sm:hidden block" />
+          for your expediency
+        </p>
+        <div className="flex flex-row flex-wrap justify-between items-center gap-8 mt-26 w-full px-4 2xl:px-71">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="flex flex-col items-center max-w-[300px]"
+              className="flex flex-col items-center w-full 2xl:max-w-[300px]"
             >
               <div
                 className={`${benefit.bgColor} w-27 h-27 rounded-xl flex items-center justify-center shadow-md mb-8`}
