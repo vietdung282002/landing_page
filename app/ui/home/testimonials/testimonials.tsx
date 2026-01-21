@@ -94,12 +94,12 @@ export default function Testimonials() {
                   key={index}
                   className="flex w-full shrink-0 flex-col items-center gap-8 sm:flex-row sm:items-start"
                 >
-                  <div className="h-[320px] w-full shrink-0 overflow-hidden rounded-3xl bg-gray-100 sm:w-[280px]">
+                  <div className="h-[320px] w-full shrink-0 overflow-hidden rounded-3xl bg-gray-100 sm:h-[410px] sm:w-[421px]">
                     <Image
                       src={testimonial.avatar}
                       alt={testimonial.author}
-                      width={280}
-                      height={320}
+                      width={1000}
+                      height={1000}
                       className="h-full w-full object-cover"
                     />
                   </div>

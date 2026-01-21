@@ -1,5 +1,5 @@
 "use client";
-import { playfairDisplay, openSans } from "../../fonts";
+import { playfairDisplay, openSans, roboto } from "../../fonts";
 import { useState } from "react";
 
 export default function Newsletter() {
@@ -12,35 +12,38 @@ export default function Newsletter() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full">
-      <div className="block lg:flex-1 bg-gray-100 h-[700px]"></div>
+    <div className="flex w-full flex-col lg:flex-row">
+      <div
+        className="block h-[700px] bg-cover bg-center bg-no-repeat lg:flex-1"
+        style={{ backgroundImage: "url('/letter_bg.jpg')" }}
+      ></div>
 
       <div
-        className={`${openSans.className} lg:flex-1 bg-secondary-100 flex flex-col justify-center items-center h-[700px]`}
+        className={`${openSans.className} bg-secondary-100 flex h-[700px] flex-col items-center justify-center lg:flex-1`}
       >
         <div className="flex flex-col items-start">
           <h2
-            className={`${playfairDisplay.className} text-4xl sm:text-5xl font-bold text-primary-200 mb-4`}
+            className={`${playfairDisplay.className} text-primary-200 mb-4 text-4xl font-bold sm:text-5xl`}
           >
             Join Our
             <br />
             <span className="text-5xl sm:text-6xl">Newsletter</span>
           </h2>
-          <p className="text-lg text-primary-200 mb-8">
+          <p className="text-primary-200 mb-8 text-lg">
             Receive exclusive deals, discounts and many offers.
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+          <form onSubmit={handleSubmit} className="flex w-full flex-col gap-10">
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className=" w-full px-4 py-4 border-0 border-b border-gray-300 focus:border-b-black focus:outline-none"
+              className="w-full border-0 border-b border-gray-300 px-4 py-4 focus:border-b-black focus:outline-none"
               required
             />
             <button
               type="submit"
-              className={`${openSans.className} w-full sm:w-auto px-8 py-4 bg-primary-200 text-white rounded-lg font-semibold text-lg hover:bg-primary-100 transition-colors`}
+              className={`${roboto.className} bg-primary-100 w-full rounded-lg px-8 py-4 text-2xl text-white transition-colors sm:w-auto 2xl:h-[68px] 2xl:w-[250px]`}
             >
               Subscribe
             </button>

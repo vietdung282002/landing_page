@@ -2,26 +2,29 @@ import { openSans } from "@/app/ui/fonts";
 import { Button } from "@/app/ui/home/hero/button";
 export default function HeroSection() {
   return (
-    <div className="flex flex-col items-center sm:items-start bg-bg-100 px-4 md:px-5 lg:px-10 2xl:px-[150px] rounded-b-[50px] 2xl:rounded-b-[62px] h-[660px] sm:h-[573px] 2xl:h-[992px] transform transition-transform">
-      <div className="flex flex-col mt-32 sm:mt-22 lg:mt-25 2xl:mt-60 items-center sm:items-start">
-        <div className="flex flex-col justify-center items-center sm:items-start hidden sm:block 2xl:text-[64px] text-4xl font-bold text-primary-200 leading-13 2xl:leading-21 ">
+    <div
+      className="flex h-[660px] transform flex-col items-center rounded-b-[50px] bg-cover bg-center bg-no-repeat px-4 transition-transform sm:h-[573px] sm:items-start md:px-5 lg:px-10 2xl:h-[992px] 2xl:rounded-b-[62px] 2xl:px-[150px]"
+      style={{ backgroundImage: "url('/hero_bg.png')" }}
+    >
+      <div className="mt-32 flex flex-col items-center sm:mt-22 sm:items-start lg:mt-25 2xl:mt-60">
+        <div className="text-primary-200 hidden flex-col items-center justify-center text-4xl leading-13 font-bold sm:flex sm:items-start 2xl:text-[64px] 2xl:leading-21">
           <h1>Exclusive Deals of</h1>
           <h1>Furniture Collection</h1>
         </div>
-        <div className="flex flex-col justify-center items-center sm:items-start block sm:hidden text-4xl font-bold text-primary-200 leading-13">
+        <div className="text-primary-200 flex flex-col items-center justify-center text-4xl leading-13 font-bold sm:hidden sm:items-start">
           <h1>Exclusive Deals of</h1>
           <h1>of Furniture</h1>
           <h1>Collection</h1>
         </div>
         <div
-          className={`${openSans.className} flex flex-col justify-center text-center sm:text-left items-center sm:items-start text-lg sm:text-2xl text-primary-200 leading-6 mt-4 2xl:mt-13`}
+          className={`${openSans.className} text-primary-200 mt-4 flex flex-col items-center justify-center text-center text-lg leading-6 sm:items-start sm:text-left sm:text-2xl 2xl:mt-13`}
         >
           Explore different categories. Find the best deals.
         </div>
         <div className="mt-13 2xl:mt-14">
           <Button>
             <div
-              className={`${openSans.className} text-2xl font-bold text-white py-6 px-13`}
+              className={`${openSans.className} px-13 py-6 text-2xl font-bold text-white`}
             >
               Shop Now
             </div>
