@@ -28,32 +28,32 @@ export default function OurCreation() {
   };
 
   return (
-    <section className="py-20 sm:py-25 bg-bg-primary overflow-hidden">
+    <section className="bg-bg-primary overflow-hidden py-20 sm:py-25">
       <div className="flex items-center gap-6">
-        <div className="hidden sm:flex shrink-0 w-[577px] h-[503px] bg-primary-100 rounded-r-[10px] pl-37 pr-25 flex-col justify-start">
+        <div className="bg-primary-100 hidden h-[503px] w-[400px] shrink-0 flex-col justify-start rounded-r-[10px] pr-25 pl-5 sm:flex 2xl:h-[503px] 2xl:w-[577px] 2xl:pl-37">
           <div className="pt-32">
             <h2
-              className={`${playfairDisplay.className} text-3xl md:text-4xl font-medium text-white leading-tight italic`}
+              className={`${playfairDisplay.className} text-3xl leading-tight font-medium text-white italic sm:text-4xl`}
             >
               Our
               <br />
               Own Creation
             </h2>
-            <p className={`${openSans.className} text-white/80 text-sm mt-8`}>
+            <p className={`${openSans.className} mt-8 text-sm text-white/80`}>
               Designed in our studio
             </p>
           </div>
 
-          <div className="flex items-center gap-3 mt-8">
+          <div className="mt-8 flex items-center gap-3">
             <span
-              className={`${openSans.className} text-white text-sm font-medium`}
+              className={`${openSans.className} text-sm font-medium text-white`}
             >
               More
             </span>
 
-            <div className="flex-1 h-[2px] bg-white/30 rounded-full overflow-hidden">
+            <div className="h-[2px] flex-1 overflow-hidden rounded-full bg-white/30">
               <div
-                className="h-full bg-primary-200 transition-all duration-500 ease-out"
+                className="bg-primary-200 h-full transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -61,7 +61,7 @@ export default function OurCreation() {
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              className="w-9 h-9 rounded-full bg-primary-200 flex items-center justify-center text-white hover:bg-primary-200/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-primary-200 hover:bg-primary-200/80 flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
               aria-label="Previous"
             >
               <Image
@@ -75,7 +75,7 @@ export default function OurCreation() {
             <button
               onClick={handleNext}
               disabled={currentIndex >= maxIndex}
-              className="w-9 h-9 rounded-full bg-secondary-100 flex items-center justify-center text-primary-200 hover:bg-secondary-100/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-secondary-100 text-primary-200 hover:bg-secondary-100/80 flex h-9 w-9 items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50"
               aria-label="Next"
             >
               <Image
@@ -88,27 +88,27 @@ export default function OurCreation() {
             </button>
           </div>
         </div>
-        <div className="flex sm:hidden shrink-0 w-[195] h-[311px] bg-primary-100 rounded-r-[10px] px-4 py-12.5 flex-col justify-start gap-y-8">
+        <div className="bg-primary-100 flex h-[311px] w-[195] shrink-0 flex-col justify-start gap-y-8 rounded-r-[10px] px-4 py-12.5 sm:hidden">
           <h2
-            className={`${playfairDisplay.className} text-[28px] md:text-4xl font-medium text-white leading-tight italic`}
+            className={`${playfairDisplay.className} text-[28px] leading-tight font-medium text-white italic md:text-4xl`}
           >
             Our Own
             <br />
             Creation
           </h2>
-          <p className={`${openSans.className} text-white/80 text-[18px]`}>
+          <p className={`${openSans.className} text-[18px] text-white/80`}>
             Designed in our studio
           </p>
 
           <span
-            className={`${roboto.className} text-white text-[18px] font-bold`}
+            className={`${roboto.className} text-[18px] font-bold text-white`}
           >
             More
           </span>
         </div>
         <div className="flex-1 overflow-hidden">
           <div
-            className="flex items-center gap-6 h-[537px] transition-transform duration-500 ease-out"
+            className="flex h-[537px] items-center gap-6 transition-transform duration-500 ease-out"
             style={{
               transform: `translateX(-${translateX}px)`,
             }}
@@ -118,26 +118,26 @@ export default function OurCreation() {
               return (
                 <div
                   key={room.id}
-                  className={`shrink-0 relative group transition-all duration-500 ease-out ${
+                  className={`group relative shrink-0 transition-all duration-500 ease-out ${
                     isActive
-                      ? "w-[288px] 2xl:w-[382px] h-[343px] 2xl:h-[537px] scale-100"
-                      : "w-[360px] h-[507px] scale-100"
+                      ? "h-[343px] w-[280px] scale-100 sm:h-[537px] sm:w-[382px]"
+                      : "h-[370px] w-[300px] scale-100 sm:h-[507px] sm:w-[360px]"
                   }`}
                 >
-                  <div className="w-full h-full bg-gray-100 rounded-3xl overflow-hidden relative shadow-lg">
+                  <div className="relative h-full w-full overflow-hidden rounded-3xl bg-gray-100">
                     <Image
                       src={room.image}
                       alt={room.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                    <div className="absolute bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
                   </div>
 
-                  <div className="absolute bottom-14 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-14 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <Link
                       href=""
-                      className={`${openSans.className} inline-flex items-center px-6 py-3 bg-white text-sm rounded-[6px] font-medium text-gray-800 shadow-lg hover:shadow-xl transition-shadow whitespace-nowrap border border-gray-200`}
+                      className={`${openSans.className} inline-flex items-center rounded-[6px] border border-gray-200 bg-white px-6 py-3 text-sm font-medium whitespace-nowrap text-gray-800 transition-shadow hover:shadow-xl`}
                     >
                       Explore All Rooms
                     </Link>

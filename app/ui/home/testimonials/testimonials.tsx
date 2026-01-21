@@ -71,50 +71,50 @@ export default function Testimonials() {
   };
 
   return (
-    <section className={`${openSans.className} py-25 bg-secondary-500`}>
-      <div className="flex flex-col items-center px-6 mb-16">
+    <section className={`${openSans.className} bg-secondary-500 py-25`}>
+      <div className="mb-16 flex flex-col items-center px-6">
         <h2
-          className={`${playfairDisplay.className} text-4xl sm:text-5xl font-bold text-primary-200 mb-4`}
+          className={`${playfairDisplay.className} text-primary-200 mb-4 text-4xl font-bold sm:text-5xl`}
         >
           Testimonials
         </h2>
         <p className="text-lg text-gray-800">Over 15,000 happy customers.</p>
       </div>
 
-      <div className="relative px-37">
+      <div className="relative px-4 2xl:px-37">
         <div className="flex items-center">
           <div
             ref={containerRef}
-            className="flex-1 overflow-x-auto scroll-smooth"
+            className="flex-1 overflow-hidden"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             <div className="flex">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="w-full shrink-0 flex flex-col md:flex-row gap-8 items-start"
+                  className="flex w-full shrink-0 flex-col items-center gap-8 sm:flex-row sm:items-start"
                 >
-                  <div className="w-[280px] h-[320px] shrink-0 rounded-3xl overflow-hidden bg-gray-100 shadow-lg">
+                  <div className="h-[320px] w-full shrink-0 overflow-hidden rounded-3xl bg-gray-100 sm:w-[280px]">
                     <Image
                       src={testimonial.avatar}
                       alt={testimonial.author}
                       width={280}
                       height={320}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover"
                     />
                   </div>
 
                   <div className="flex-1 pt-4">
                     <p
-                      className={`${playfairDisplay.className} text-2xl md:text-3xl text-primary-200 leading-relaxed mb-8 italic`}
+                      className={`${playfairDisplay.className} text-primary-200 mb-8 text-lg leading-relaxed italic 2xl:text-3xl`}
                     >
                       &ldquo;{testimonial.quote}&rdquo;
                     </p>
                     <div>
-                      <p className="text-lg font-semibold text-primary-200">
+                      <p className="text-primary-200 text-lg font-semibold">
                         {testimonial.author}
                       </p>
-                      <p className="text-base text-primary-100">
+                      <p className="text-primary-100 text-base">
                         {testimonial.title}
                       </p>
                     </div>
@@ -124,11 +124,11 @@ export default function Testimonials() {
             </div>
           </div>
 
-          <div className="hidden md:flex flex-col gap-3 shrink-0">
+          <div className="2xlflex hidden shrink-0 flex-col gap-3">
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              className="w-10 h-10 rounded-full bg-secondary-200 flex items-center justify-center text-primary-200 hover:bg-secondary-200/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-secondary-200 text-primary-200 hover:bg-secondary-200/80 flex h-10 w-10 items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50"
               aria-label="Previous"
             >
               <Image
@@ -142,7 +142,7 @@ export default function Testimonials() {
             <button
               onClick={handleNext}
               disabled={currentIndex >= maxIndex}
-              className="w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center text-primary-200 hover:bg-secondary-100/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-secondary-100 text-primary-200 hover:bg-secondary-100/80 flex h-10 w-10 items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50"
               aria-label="Next"
             >
               <Image
@@ -169,7 +169,7 @@ export default function Testimonials() {
 
           <Link
             href="/s"
-            className="flex items-center gap-2 text-sm text-gray-800 hover:text-primary-200 transition-colors whitespace-nowrap"
+            className="hover:text-primary-200 flex items-center gap-2 text-sm whitespace-nowrap text-gray-800 transition-colors"
           >
             <span>See all review</span>
             <svg

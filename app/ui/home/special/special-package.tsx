@@ -3,7 +3,7 @@ import Image from "next/image";
 import { openSans, playfairDisplay } from "../../fonts";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import SpecialScrollView from "./special-scrollview";
+import DesktopSpecialScrollView from "./special-scrollview";
 import CustomScrollbar from "../../custom-scrollbar";
 import { useRef } from "react";
 
@@ -79,15 +79,18 @@ const specialPackage = [
 
 export default function SpecialPackage() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const tabletScrollContainerRef = useRef<HTMLDivElement>(null);
   return (
     <div
-      className={`${playfairDisplay.className} text-primary-200  flex flex-col items-center justify-start py-20 2xl:py-37`}
+      className={`${playfairDisplay.className} text-primary-200 flex flex-col items-center justify-start py-20 2xl:py-37`}
     >
-      <div className="text-[28px] 2xl:text-7xl font-bold">Special Package</div>
+      <div className="text-[28px] font-bold sm:text-7xl 2xl:text-7xl">
+        Special Package
+      </div>
       <div
-        className={`${openSans.className} hidden 2xl:flex px-25 flex-row items-start w-full mt-26`}
+        className={`${openSans.className} mt-26 hidden w-full flex-row items-start px-25 2xl:flex`}
       >
-        <div className="flex flex-col mr-25">
+        <div className="mr-25 flex flex-col">
           <div className="relative">
             <Image
               src={specialPackage[0].image}
@@ -96,7 +99,7 @@ export default function SpecialPackage() {
               height={556}
               className="rounded-[16px]"
             />
-            <div className="absolute bottom-0 right-0 cursor-pointer">
+            <div className="absolute right-0 bottom-0 cursor-pointer">
               <Image
                 src="/icon_zoom.svg"
                 alt="special package"
@@ -105,7 +108,7 @@ export default function SpecialPackage() {
               />
             </div>
           </div>
-          <div className="flex flex-row justify-between items-start mt-8">
+          <div className="mt-8 flex flex-row items-start justify-between">
             <div className="flex flex-col gap-y-5">
               <div className="text-4xl">{specialPackage[0].name}</div>
               <div className="flex flex-row gap-x-3">
@@ -125,7 +128,7 @@ export default function SpecialPackage() {
             </div>
             <Link
               href=""
-              className={`${openSans.className} flex flex-row mt-0 h-[66px] w-[196px] justify-center items-center gap-[18px] rounded-lg bg-primary-100 px-6 py-3 text-lg text-white`}
+              className={`${openSans.className} bg-primary-100 mt-0 flex h-[66px] w-[196px] flex-row items-center justify-center gap-[18px] rounded-lg px-6 py-3 text-lg text-white`}
             >
               <span>Add to cart</span>
               <Image
@@ -137,26 +140,26 @@ export default function SpecialPackage() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-1 flex-col">
           <div className="text-2xl font-bold">Description</div>
-          <div className="text-lg mt-3">{specialPackage[0].description}</div>
+          <div className="mt-3 text-lg">{specialPackage[0].description}</div>
           <Link
             href=""
-            className={`${openSans.className} flex flex-row mt-5 justify-start items-center gap-[8px] text-lg text-black font-semibold`}
+            className={`${openSans.className} mt-5 flex flex-row items-center justify-start gap-[8px] text-lg font-semibold text-black`}
           >
             <span>See More</span>
-            <ChevronDownIcon className="w-6 h-6" />
+            <ChevronDownIcon className="h-6 w-6" />
           </Link>
-          <div className="flex flex-row mt-10 h-[183px]">
+          <div className="mt-10 flex h-[183px] flex-row">
             <Image
               src={specialPackage[1].image}
               alt="special package"
               width={288}
               height={183}
-              className="rounded-[10px] mr-4"
+              className="mr-4 rounded-[10px]"
             />
-            <div className="flex flex-col flex-1 rounded-[10px] h-full bg-secondary-600 justify-center items-start gap-y-6">
-              <div className="text-xl flex flex-row justify-between w-full px-5">
+            <div className="bg-secondary-600 flex h-full flex-1 flex-col items-start justify-center gap-y-6 rounded-[10px]">
+              <div className="flex w-full flex-row justify-between px-5 text-xl">
                 <div>{specialPackage[1].name}</div>
                 <div className="font-bold">{specialPackage[1].price}</div>
               </div>
@@ -171,7 +174,7 @@ export default function SpecialPackage() {
                   />
                 ))}
               </div>
-              <div className="text-xl flex flex-row justify-between w-full pl-5 cursor-pointer">
+              <div className="flex w-full cursor-pointer flex-row justify-between pl-5 text-xl">
                 <div className="underline">See Details</div>
                 <Image
                   src="/icon_zoom_2.svg"
@@ -184,24 +187,24 @@ export default function SpecialPackage() {
             </div>
           </div>
           <div className="mt-8">
-            <SpecialScrollView specialPackage={specialPackage} />
+            <DesktopSpecialScrollView specialPackage={specialPackage} />
           </div>
         </div>
       </div>
-      <div className="flex sm:hidden flex-col px-4 overflow-hidden w-full mt-15">
+      <div className="mt-15 flex w-full flex-col overflow-hidden px-4 sm:hidden">
         <div
           ref={scrollContainerRef}
-          className=" w-full flex flex-row overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-x-4"
+          className="flex w-full flex-row gap-x-4 overflow-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {specialPackage.map((packageItem) => (
             <div
               key={packageItem.name}
-              className="flex flex-col w-full shrink-0 min-w-full"
+              className="flex w-full min-w-full shrink-0 flex-col"
             >
               <div className={`${openSans.className} text-2xl`}>
                 {packageItem.name}
               </div>
-              <div className="flex flex-row gap-x-3 mt-5">
+              <div className="mt-5 flex flex-row gap-x-3">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Image
                     key={index}
@@ -213,13 +216,13 @@ export default function SpecialPackage() {
                 ))}
               </div>
               <div
-                className={`${openSans.className} text-[28px] font-bold mt-5`}
+                className={`${openSans.className} mt-5 text-[28px] font-bold`}
               >
                 {packageItem.price}
               </div>
               <Link
                 href=""
-                className={`${openSans.className} flex flex-row mt-8 h-[58px] w-[178px] justify-center items-center gap-[18px] rounded-lg bg-primary-100 px-6 py-3 text-base text-white`}
+                className={`${openSans.className} bg-primary-100 mt-8 flex h-[58px] w-[178px] flex-row items-center justify-center gap-[18px] rounded-lg px-6 py-3 text-base text-white`}
               >
                 <span>Add to cart</span>
                 <Image
@@ -229,13 +232,13 @@ export default function SpecialPackage() {
                   height={18}
                 />
               </Link>
-              <div className="relative w-full mt-8">
+              <div className="relative mt-8 w-full">
                 <Image
                   src={packageItem.image}
                   alt="special package"
                   width={288}
                   height={280}
-                  className="w-full h-auto rounded-3xl"
+                  className="h-auto w-full rounded-3xl"
                   sizes="100vw"
                 />
               </div>
@@ -248,7 +251,7 @@ export default function SpecialPackage() {
             </div>
           ))}
         </div>
-        <div className="px-0 mt-7 sm:mt-13">
+        <div className="mt-7 px-0 sm:mt-13">
           <CustomScrollbar
             containerRef={scrollContainerRef}
             trackHeight={200}
@@ -258,7 +261,125 @@ export default function SpecialPackage() {
           />
         </div>
       </div>
-      <div className="hidden sm:flex 2xl:hidden"></div>
+      <div className="mt-15 hidden w-full flex-col px-5 sm:flex 2xl:hidden">
+        <div className="flex flex-col lg:flex-row">
+          <div className="relative flex w-full lg:w-[583px]">
+            <Image
+              src={specialPackage[0].image}
+              alt="special package"
+              width={1000}
+              height={1000}
+              className="h-auto w-full rounded-3xl"
+            />
+            <div className="absolute right-0 bottom-0 cursor-pointer">
+              <Image
+                src="/icon_zoom_circle.svg"
+                alt="special package"
+                width={48}
+                height={50}
+              />
+            </div>
+          </div>
+          <div
+            className={`${openSans.className} mt-5 flex flex-1 flex-col lg:mt-0 lg:ml-5`}
+          >
+            <div className={`${openSans.className} text-2xl font-bold`}>
+              {specialPackage[0].name}
+            </div>
+            <div className="mt-5 flex flex-row gap-x-3">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Image
+                  key={index}
+                  src="/star_icon.svg"
+                  alt="star"
+                  width={18}
+                  height={18}
+                />
+              ))}
+            </div>
+            <div className={`${openSans.className} mt-5 text-[28px] font-bold`}>
+              {specialPackage[0].price}
+            </div>
+            <Link
+              href=""
+              className={`${openSans.className} bg-primary-100 mt-8 flex h-[46px] w-[178px] flex-row items-center justify-center gap-[18px] rounded-lg px-6 py-3 text-base text-white`}
+            >
+              <span>Add to cart</span>
+              <Image
+                src="/icon_cart_white.svg"
+                alt="arrow right"
+                width={18}
+                height={18}
+              />
+            </Link>
+            <div className="mt-8 text-2xl font-bold">Description</div>
+            <div className={`${openSans.className} mt-8 line-clamp-3 text-lg`}>
+              {specialPackage[0].description}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-15 flex w-full flex-col px-4">
+          <div
+            ref={tabletScrollContainerRef}
+            className="flex w-full flex-row gap-x-5 overflow-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {specialPackage.slice(1).map((packageItem, index) => (
+              <div
+                key={index}
+                className={`${openSans.className} flex h-[183px] w-[728px] shrink-0 flex-row`}
+              >
+                <Image
+                  src={packageItem.image}
+                  alt={packageItem.name}
+                  width={241}
+                  height={183}
+                  className="rounded-[10px]"
+                />
+                <div className="bg-secondary-200 relative ml-4 flex flex-1 rounded-[10px] px-5">
+                  <div className="flex w-full flex-col items-start justify-center gap-y-6">
+                    <div className="flex w-full flex-row items-center justify-between">
+                      <div className="text-[22px]">{packageItem.name}</div>
+                      <div className="text-[28px] font-bold">
+                        {packageItem.price}
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-x-3">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Image
+                          key={index}
+                          src="/star_icon.svg"
+                          alt="star"
+                          width={18}
+                          height={18}
+                        />
+                      ))}
+                    </div>
+                    <div className="text-base underline">See Details</div>
+                  </div>
+                  <div className="absolute right-0 bottom-0 cursor-pointer">
+                    <Image
+                      src="/icon_zoom_2.svg"
+                      alt="special package"
+                      width={36}
+                      height={30}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-7 px-0 sm:mt-13">
+            <CustomScrollbar
+              containerRef={tabletScrollContainerRef}
+              trackHeight={200}
+              itemCount={specialPackage.slice(1).length}
+              direction="horizontal"
+              gap={20}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

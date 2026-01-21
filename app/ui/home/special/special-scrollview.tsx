@@ -17,7 +17,7 @@ interface SpecialScrollViewProps {
   specialPackage: SpecialPackageItem[];
 }
 
-export default function SpecialScrollView({
+export default function DesktopSpecialScrollView({
   specialPackage,
 }: SpecialScrollViewProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -28,17 +28,17 @@ export default function SpecialScrollView({
 
   return (
     <div
-      className="hidden 2xl:flex flex-row flex-1 justify-between w-full relative"
+      className="relative hidden w-full flex-1 flex-row justify-between 2xl:flex"
       style={{ height: `${containerHeight}px` }}
     >
       <div
         ref={scrollContainerRef}
-        className={`${openSans.className} flex flex-col gap-y-8 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+        className={`${openSans.className} flex flex-col gap-y-8 overflow-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
       >
         {specialPackage.slice(2).map((packageItem) => (
           <div
             key={packageItem.name}
-            className="flex flex-row text-2xl leading-7 text-primary-200 w-[625px] h-[149px] gap-4"
+            className="text-primary-200 flex h-[149px] w-[625px] flex-row gap-4 text-2xl leading-7"
           >
             <Image
               src={packageItem.image}
@@ -47,9 +47,9 @@ export default function SpecialScrollView({
               height={149}
               className="rounded-[10px]"
             />
-            <div className="flex flex-col gap-y-3 justify-center">
-              <div className="flex flex-row justify-between items-center h-[22px]">
-                <div className={`${playfairDisplay.className} text-base `}>
+            <div className="flex flex-col justify-center gap-y-3">
+              <div className="flex h-[22px] flex-row items-center justify-between">
+                <div className={`${playfairDisplay.className} text-base`}>
                   {packageItem.name}
                 </div>
                 <div className="text-[22px] font-bold">{packageItem.price}</div>
@@ -65,15 +65,15 @@ export default function SpecialScrollView({
                   />
                 ))}
               </div>
-              <div className="text-[14px] font-normal line-clamp-1 text-ellipsis overflow-hidden">
+              <div className="line-clamp-1 overflow-hidden text-[14px] font-normal text-ellipsis">
                 {packageItem.description}
               </div>
               <Link
                 href=""
-                className={`${openSans.className} flex flex-row justify-start items-center gap-[8px] text-[14px] text-black font-semibold`}
+                className={`${openSans.className} flex flex-row items-center justify-start gap-[8px] text-[14px] font-semibold text-black`}
               >
                 <span>See More</span>
-                <ChevronDownIcon className="w-[14px] h-[7px]" />
+                <ChevronDownIcon className="h-[7px] w-[14px]" />
               </Link>
             </div>
           </div>

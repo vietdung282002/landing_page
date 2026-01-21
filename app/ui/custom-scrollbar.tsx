@@ -34,6 +34,30 @@ export default function CustomScrollbar({
 
   const isVertical = direction === "vertical";
 
+  useEffect(() => {
+    if (isVertical) {
+      setTrackLength(trackHeight);
+      return;
+    }
+
+    const updateTrackLength = () => {
+      if (scrollbarRef.current) {
+        const width = scrollbarRef.current.getBoundingClientRect().width;
+        if (width > 0) {
+          setTrackLength(width);
+        }
+      }
+    };
+
+    const timeoutId = setTimeout(updateTrackLength, 0);
+    window.addEventListener("resize", updateTrackLength);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", updateTrackLength);
+    };
+  }, [isVertical, trackHeight]);
+
   const updateScrollPosition = useCallback(() => {
     if (isDragging || !containerRef.current) return;
 
@@ -61,28 +85,9 @@ export default function CustomScrollbar({
     window.addEventListener("resize", updateScrollPosition);
     updateScrollPosition();
 
-    const updateTrackLength = () => {
-      if (!scrollbarRef.current || !scrollbarContainerRef.current) return;
-      if (isVertical) {
-        setTrackLength(trackHeight);
-      } else {
-        setTrackLength(
-          scrollbarContainerRef.current.offsetWidth || trackHeight
-        );
-      }
-    };
-
-    updateTrackLength();
-    if (!isVertical) {
-      window.addEventListener("resize", updateTrackLength);
-    }
-
     return () => {
       container.removeEventListener("scroll", updateScrollPosition);
       window.removeEventListener("resize", updateScrollPosition);
-      if (!isVertical) {
-        window.removeEventListener("resize", updateTrackLength);
-      }
     };
   }, [containerRef, isDragging, isVertical, trackHeight, updateScrollPosition]);
 
@@ -172,7 +177,7 @@ export default function CustomScrollbar({
     containerRef.current.scrollBy(
       isVertical
         ? { top: -scrollAmount, behavior: "smooth" }
-        : { left: -scrollAmount, behavior: "smooth" }
+        : { left: -scrollAmount, behavior: "smooth" },
     );
   };
 
@@ -185,7 +190,7 @@ export default function CustomScrollbar({
     containerRef.current.scrollBy(
       isVertical
         ? { top: scrollAmount, behavior: "smooth" }
-        : { left: scrollAmount, behavior: "smooth" }
+        : { left: scrollAmount, behavior: "smooth" },
     );
   };
 
@@ -201,47 +206,47 @@ export default function CustomScrollbar({
       className={
         isVertical
           ? "flex flex-col items-center justify-start"
-          : "flex flex-col items-end w-full justify-center"
+          : "flex w-full flex-col items-end justify-center"
       }
       style={{ gap: `${gap}px` }}
     >
       <div
         className={
-          isVertical ? "flex-1 flex items-center justify-end" : "flex w-full"
+          isVertical ? "flex flex-1 items-center justify-end" : "flex w-full"
         }
       >
         <div
           ref={scrollbarRef}
           className={
             isVertical
-              ? "relative w-px bg-primary-200"
-              : "relative h-px bg-primary-200 w-full"
+              ? "bg-primary-200 relative w-px"
+              : "bg-primary-200 relative h-px w-full"
           }
           style={
             isVertical
               ? { width: "1px", height: `${trackLength}px` }
-              : { height: "6px", width: `${trackLength}px` }
+              : { height: "6px" }
           }
         >
           <div
             ref={thumbRef}
             className={
               isVertical
-                ? "absolute left-1/2 -translate-x-1/2 bg-primary-200 cursor-grab active:cursor-grabbing transition-colors hover:bg-primary-200"
-                : "absolute top-1/2 -translate-y-1/2 bg-primary-100 cursor-grab active:cursor-grabbing transition-colors hover:bg-primary-200"
+                ? "bg-primary-200 hover:bg-primary-200 absolute left-1/2 -translate-x-1/2 cursor-grab transition-colors active:cursor-grabbing"
+                : "bg-primary-100 hover:bg-primary-200 absolute top-1/2 -translate-y-1/2 cursor-grab transition-colors active:cursor-grabbing"
             }
             style={
               isVertical
                 ? {
-                  width: "5px",
-                  height: `${thumbSize}px`,
-                  top: `${thumbPos}px`,
-                }
+                    width: "5px",
+                    height: `${thumbSize}px`,
+                    top: `${thumbPos}px`,
+                  }
                 : {
-                  height: "12px",
-                  width: `${thumbSize}px`,
-                  left: `${thumbPos}px`,
-                }
+                    height: "12px",
+                    width: `${thumbSize}px`,
+                    left: `${thumbPos}px`,
+                  }
             }
             onMouseDown={handleMouseDown}
           />
@@ -251,8 +256,8 @@ export default function CustomScrollbar({
         <div
           className={
             isVertical
-              ? "h-26 flex flex-col justify-between"
-              : "w-26 hidden 2xl:flex flex-row justify-between"
+              ? "flex h-26 flex-col justify-between"
+              : "hidden w-26 flex-row justify-between 2xl:flex"
           }
         >
           <button
