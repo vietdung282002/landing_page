@@ -11,35 +11,35 @@ const testimonials = [
       "My experience with Mark is a complete sucess, from customer service, wide range of products, clean store, purchasing experience, the newsletter.Thank you.",
     author: "Leona Paul",
     title: "CEO of Floatcom",
-    avatar: "/bedroom.jpg",
+    avatar: "/user/avatar_0.jpg",
   },
   {
     quote:
       "The quality of furniture exceeded my expectations. The delivery was prompt and the assembly service was professional. Highly recommend!",
     author: "Sarah Johnson",
     title: "Interior Designer",
-    avatar: "/bedroom.jpg",
+    avatar: "/user/avatar_1.jpeg",
   },
   {
     quote:
       "Outstanding customer support and beautiful products. The team helped me choose the perfect pieces for my living room. Will definitely come back!",
     author: "Michael Chen",
     title: "Architect at BuildCo",
-    avatar: "/bedroom.jpg",
+    avatar: "/user/avatar_2.jpeg",
   },
   {
     quote:
       "From browsing to delivery, everything was seamless. The furniture quality is top-notch and the prices are very competitive.",
     author: "Emma Williams",
     title: "Home Stylist",
-    avatar: "/bedroom.jpg",
+    avatar: "/user/avatar_3.jpg",
   },
   {
     quote:
       "I've furnished my entire office with their products. Professional service, durable furniture, and great after-sales support.",
     author: "David Brown",
     title: "Startup Founder",
-    avatar: "/bedroom.jpg",
+    avatar: "/user/avatar_4.jpg",
   },
 ];
 

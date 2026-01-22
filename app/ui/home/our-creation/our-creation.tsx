@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { playfairDisplay, openSans, roboto } from "../../fonts";
 
-const roomItems = Array.from({ length: 10 }, (_, i) => ({
+const roomItems = Array.from({ length: 9 }, (_, i) => ({
   id: i + 1,
   name: `Room ${i + 1}`,
-  image: "/bedroom.jpg",
+  image: `/our_creation/our_creation_${i}.jpg`,
 }));
 
 export default function OurCreation() {
