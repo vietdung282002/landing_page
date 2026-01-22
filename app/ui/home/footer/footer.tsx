@@ -1,11 +1,11 @@
 import { openSans } from "../../fonts";
 import Image from "next/image";
 const socialLinks = [
-  { name: "Facebook", href: "/", icon: "/facebook.svg" },
-  { name: "Instagram", href: "/", icon: "/instagram.svg" },
-  { name: "LinkedIn", href: "/", icon: "/linkedin.svg" },
-  { name: "Dribble", href: "/", icon: "/dribble.svg" },
-  { name: "Twitter", href: "/", icon: "/twitter.svg" },
+  { name: "Facebook", href: "/", icon: "/social_media/facebook.svg" },
+  { name: "Instagram", href: "/", icon: "/social_media/instagram.svg" },
+  { name: "LinkedIn", href: "/", icon: "/social_media/LinkedIn.svg" },
+  { name: "Dribble", href: "/", icon: "/social_media/dribble.svg" },
+  { name: "Twitter", href: "/", icon: "/social_media/twitter.svg" },
 ];
 export default function Footer() {
   return (
